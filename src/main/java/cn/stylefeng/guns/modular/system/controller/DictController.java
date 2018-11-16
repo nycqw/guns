@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
-import cn.stylefeng.guns.core.common.annotion.BussinessLog;
+import cn.stylefeng.guns.core.common.annotion.FlowLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.dictmap.DictMap;
@@ -90,7 +90,7 @@ public class DictController extends BaseController {
      *
      * @param dictValues 格式例如   "1:启用;2:禁用;3:冻结"
      */
-    @BussinessLog(value = "添加字典记录", key = "dictName,dictValues", dict = DictMap.class)
+    @FlowLog(value = "添加字典记录", key = "dictName,dictValues", dict = DictMap.class)
     @RequestMapping(value = "/add")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
@@ -126,7 +126,7 @@ public class DictController extends BaseController {
     /**
      * 修改字典
      */
-    @BussinessLog(value = "修改字典", key = "dictName,dictValues", dict = DictMap.class)
+    @FlowLog(value = "修改字典", key = "dictName,dictValues", dict = DictMap.class)
     @RequestMapping(value = "/update")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
@@ -141,7 +141,7 @@ public class DictController extends BaseController {
     /**
      * 删除字典记录
      */
-    @BussinessLog(value = "删除字典记录", key = "dictId", dict = DictMap.class)
+    @FlowLog(value = "删除字典记录", key = "dictId", dict = DictMap.class)
     @RequestMapping(value = "/delete")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody

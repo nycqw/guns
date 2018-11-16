@@ -16,7 +16,7 @@
 package cn.stylefeng.guns.modular.system.controller;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.stylefeng.guns.core.common.annotion.BussinessLog;
+import cn.stylefeng.guns.core.common.annotion.FlowLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.factory.PageFactory;
@@ -89,7 +89,7 @@ public class LogController extends BaseController {
     /**
      * 清空日志
      */
-    @BussinessLog(value = "清空业务日志")
+    @FlowLog(value = "清空业务日志")
     @RequestMapping("/delLog")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody

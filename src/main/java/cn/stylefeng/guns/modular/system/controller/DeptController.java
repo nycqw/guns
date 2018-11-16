@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
-import cn.stylefeng.guns.core.common.annotion.BussinessLog;
+import cn.stylefeng.guns.core.common.annotion.FlowLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.dictmap.DeptDict;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
@@ -97,7 +97,7 @@ public class DeptController extends BaseController {
     /**
      * 新增部门
      */
-    @BussinessLog(value = "添加部门", key = "simplename", dict = DeptDict.class)
+    @FlowLog(value = "添加部门", key = "simplename", dict = DeptDict.class)
     @RequestMapping(value = "/add")
     @Permission
     @ResponseBody
@@ -134,7 +134,7 @@ public class DeptController extends BaseController {
     /**
      * 修改部门
      */
-    @BussinessLog(value = "修改部门", key = "simplename", dict = DeptDict.class)
+    @FlowLog(value = "修改部门", key = "simplename", dict = DeptDict.class)
     @RequestMapping(value = "/update")
     @Permission
     @ResponseBody
@@ -150,7 +150,7 @@ public class DeptController extends BaseController {
     /**
      * 删除部门
      */
-    @BussinessLog(value = "删除部门", key = "deptId", dict = DeptDict.class)
+    @FlowLog(value = "删除部门", key = "deptId", dict = DeptDict.class)
     @RequestMapping(value = "/delete")
     @Permission
     @ResponseBody

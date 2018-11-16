@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
-import cn.stylefeng.guns.core.common.annotion.BussinessLog;
+import cn.stylefeng.guns.core.common.annotion.FlowLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.cache.Cache;
@@ -127,7 +127,7 @@ public class RoleController extends BaseController {
      * 角色新增
      */
     @RequestMapping(value = "/add")
-    @BussinessLog(value = "添加角色", key = "name", dict = RoleDict.class)
+    @FlowLog(value = "添加角色", key = "name", dict = RoleDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public ResponseData add(@Valid Role role, BindingResult result) {
@@ -143,7 +143,7 @@ public class RoleController extends BaseController {
      * 角色修改
      */
     @RequestMapping(value = "/edit")
-    @BussinessLog(value = "修改角色", key = "name", dict = RoleDict.class)
+    @FlowLog(value = "修改角色", key = "name", dict = RoleDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public ResponseData edit(@Valid Role role, BindingResult result) {
@@ -161,7 +161,7 @@ public class RoleController extends BaseController {
      * 删除角色
      */
     @RequestMapping(value = "/remove")
-    @BussinessLog(value = "删除角色", key = "roleId", dict = RoleDict.class)
+    @FlowLog(value = "删除角色", key = "roleId", dict = RoleDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public ResponseData remove(@RequestParam Integer roleId) {
@@ -201,7 +201,7 @@ public class RoleController extends BaseController {
      * 配置权限
      */
     @RequestMapping("/setAuthority")
-    @BussinessLog(value = "配置权限", key = "roleId,ids", dict = RoleDict.class)
+    @FlowLog(value = "配置权限", key = "roleId,ids", dict = RoleDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public ResponseData setAuthority(@RequestParam("roleId") Integer roleId, @RequestParam("ids") String ids) {

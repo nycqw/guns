@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
-import cn.stylefeng.guns.core.common.annotion.BussinessLog;
+import cn.stylefeng.guns.core.common.annotion.FlowLog;
 import cn.stylefeng.guns.core.common.constant.dictmap.NoticeMap;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
@@ -106,7 +106,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    @BussinessLog(value = "新增通知", key = "title", dict = NoticeMap.class)
+    @FlowLog(value = "新增通知", key = "title", dict = NoticeMap.class)
     public Object add(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
@@ -122,7 +122,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    @BussinessLog(value = "删除通知", key = "noticeId", dict = NoticeMap.class)
+    @FlowLog(value = "删除通知", key = "noticeId", dict = NoticeMap.class)
     public Object delete(@RequestParam Integer noticeId) {
 
         //缓存通知名称
@@ -138,7 +138,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/update")
     @ResponseBody
-    @BussinessLog(value = "修改通知", key = "title", dict = NoticeMap.class)
+    @FlowLog(value = "修改通知", key = "title", dict = NoticeMap.class)
     public Object update(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getId(), notice.getTitle(), notice.getContent())) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);

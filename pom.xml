@@ -9,13 +9,10 @@
         <version>2.0.4.RELEASE</version>
     </parent>
 
-    <groupId>cn.stylefeng.guns</groupId>
-    <artifactId>guns</artifactId>
+    <groupId>com.eden</groupId>
+    <artifactId>eden-admin</artifactId>
     <version>1.0.0</version>
-
-    <name>guns-admin</name>
-    <description>guns 的spring boot版本</description>
-
+    <name>eden-admin</name>
     <packaging>jar</packaging>
 
     <properties>
@@ -158,6 +155,12 @@
         <!--<groupId>org.springframework.boot</groupId>-->
         <!--<artifactId>spring-boot-starter-data-redis</artifactId>-->
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.14</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -189,6 +192,7 @@
                 </configuration>
             </plugin>
         </plugins>
+
         <resources>
             <resource>
                 <directory>src/main/webapp</directory>
@@ -208,30 +212,18 @@
 
     <profiles>
         <profile>
-            <id>local</id>
+            <id>dev</id>
             <properties>
-                <spring.active>local</spring.active>
+                <spring.active>dev</spring.active>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
         <profile>
-            <id>dev</id>
+            <id>prd</id>
             <properties>
-                <spring.active>dev</spring.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <spring.active>test</spring.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>produce</id>
-            <properties>
-                <spring.active>produce</spring.active>
+                <spring.active>prd</spring.active>
             </properties>
         </profile>
     </profiles>

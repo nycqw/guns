@@ -1,28 +1,4 @@
-/*
-Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50721
-Source Host           : localhost:3306
-Source Database       : guns
-
-Target Server Type    : MYSQL
-Target Server Version : 50721
-File Encoding         : 65001
-
-Date: 2018-06-26 23:10:40
-*/
-
-DROP DATABASE IF EXISTS guns;
-CREATE DATABASE IF NOT EXISTS guns DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-
-USE guns;
-
-SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for sys_dept
--- ----------------------------
 DROP TABLE IF EXISTS `sys_dept`;
 CREATE TABLE `sys_dept` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',

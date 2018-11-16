@@ -1,12 +1,12 @@
 /**
  * Copyright 2018-2020 stylefeng & fengshuonan (https://gitee.com/stylefeng)
- * <p>
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ * <p/>
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.guns.core.aop;
 
-import cn.stylefeng.guns.core.common.annotion.BussinessLog;
+import cn.stylefeng.guns.core.common.annotion.FlowLog;
 import cn.stylefeng.guns.core.common.constant.dictmap.base.AbstractDictMap;
 import cn.stylefeng.guns.core.log.LogManager;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
@@ -49,7 +49,7 @@ public class LogAop {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut(value = "@annotation(cn.stylefeng.guns.core.common.annotion.BussinessLog)")
+    @Pointcut(value = "@annotation(cn.stylefeng.guns.core.common.annotion.FlowLog)")
     public void cutService() {
     }
 
@@ -69,16 +69,7 @@ public class LogAop {
     }
 
     private void handle(ProceedingJoinPoint point) throws Exception {
-
-        //获取拦截的方法名
-        Signature sig = point.getSignature();
-        MethodSignature msig = null;
-        if (!(sig instanceof MethodSignature)) {
-            throw new IllegalArgumentException("该注解只能用于方法");
-        }
-        msig = (MethodSignature) sig;
-        Object target = point.getTarget();
-        Method currentMethod = target.getClass().getMethod(msig.getName(), msig.getParameterTypes());
+        Method currentMethod = getMethod(point);
         String methodName = currentMethod.getName();
 
         //如果当前用户未登录，不做日志
@@ -87,25 +78,20 @@ public class LogAop {
             return;
         }
 
-        //获取拦截方法的参数
+
         String className = point.getTarget().getClass().getName();
-        Object[] params = point.getArgs();
+        // 获取拦截方法的参数
+        String params = getParams(point);
 
         //获取操作名称
-        BussinessLog annotation = currentMethod.getAnnotation(BussinessLog.class);
-        String bussinessName = annotation.value();
+        FlowLog annotation = currentMethod.getAnnotation(FlowLog.class);
+        String flowName = annotation.value();
         String key = annotation.key();
         Class dictClass = annotation.dict();
 
-        StringBuilder sb = new StringBuilder();
-        for (Object param : params) {
-            sb.append(param);
-            sb.append(" & ");
-        }
-
         //如果涉及到修改,比对变化
         String msg;
-        if (bussinessName.contains("修改") || bussinessName.contains("编辑")) {
+        if (flowName.contains("修改") || flowName.contains("编辑")) {
             Object obj1 = LogObjectHolder.me().get();
             Map<String, String> obj2 = HttpContext.getRequestParameters();
             msg = Contrast.contrastObj(dictClass, key, obj1, obj2);
@@ -115,6 +101,30 @@ public class LogAop {
             msg = Contrast.parseMutiKey(dictMap, key, parameters);
         }
 
-        LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(), bussinessName, className, methodName, msg));
+        LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(), flowName, className, methodName, msg));
+    }
+
+    private String getParams(ProceedingJoinPoint point) {
+        Object[] params = point.getArgs();
+        StringBuilder sb = new StringBuilder();
+        for (Object param : params) {
+            sb.append(param);
+            sb.append(" & ");
+        }
+        return params.toString();
+    }
+
+    /**
+     * 获取拦截的方法
+     */
+    private Method getMethod(ProceedingJoinPoint point) throws NoSuchMethodException {
+        Signature signature = point.getSignature();
+        if (!(signature instanceof MethodSignature)) {
+            throw new IllegalArgumentException("该注解只能用于方法");
+        }
+        MethodSignature methodSignature = (MethodSignature) signature;
+        // 目标类对象
+        Object target = point.getTarget();
+        return target.getClass().getMethod(methodSignature.getName(), methodSignature.getParameterTypes());
     }
 }

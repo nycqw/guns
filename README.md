@@ -1,32 +1,4 @@
-# Guns V5.1
-
-## 介绍
-Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整合springmvc + shiro + mybatis-plus + beetl!Guns项目代码简洁，注释丰富，上手容易，同时Guns包含许多基础模块(用户管理，角色管理，部门管理，字典管理等10个模块)，可以直接作为一个后台管理系统的脚手架! 2018目标 `更简洁`，`更规范`!
-
-## 云服务器全网最低 Guns专属优惠
-1核2G 99/年，298/3年，2核4G 500/1年，1227/3年，2核8G 5M带宽 2000/3年，仅限阿里云新用户，想买的老用户可以注册一个哦，点击链接购买[https://m.aliyun.com/act/team1111/#/share?params=N.lqp2rk5ITB.p4kqz45e](https://m.aliyun.com/act/team1111/#/share?params=N.lqp2rk5ITB.p4kqz45e) 
-
-### Guns v5.1更新内容
-
-> * 框架整体的包名变为cn开头，和域名stylefeng.cn保持一致！
-> * 优化了shiro相关的几个服务类的结构，整体业务逻辑不变，优化了部分包结构和类之间的关系，项目整体更加简洁和易维护！
-> * 整合了guns-core，和roses项目的kernel-core，并把kernel-core上传到了maven的中央仓库！
-> * 剔除了guns-generator模块，抽出单独的项目https://gitee.com/stylefeng/guns-generator来维护，并且guns-generator也上传到了maven中央仓库！
-> * 框架整体回归了单模块应用，返璞归真，开箱即用，快速开发新项目，新业务！
-
-**另外更新了Guns技术文档的版本到5.1，与项目版本保持一致，详情见文档详情！**
-
-## 最新Guns技术文档
-Guns框架有作者在业余时间整理的技术文档，详情点击[查看详情](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)
-
-## 最新Guns视频教程
-Guns框架有作者在业余时间录制的视频教程，详情点击[教程介绍](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
-
-## 技术讨论 & [wiki地址](https://gitee.com/stylefeng/guns/wikis/Home)
-如果对项目有任何疑问或者建议，欢迎加入Guns技术交流1群:254550081，Guns技术交流2群：684163663，Guns技术交流3群：207434260(加之前先看下文档guns-admin/doc/Guns技术文档 v1.0.pdf)
-
-## 管理系统功能
-1.用户管理 2.角色管理 3.部门管理 4.菜单管理 5.字典管理 6.业务日志 7.登录日志 8.监控管理 9.通知管理 10.代码生成
+本地访问地址：http://localhost:8082/   admin/111111
 
 ## 项目特点
 1. 基于SpringBoot，简化了大量项目配置和maven依赖，让您更专注于业务开发，独特的分包方式，代码多而不乱。
@@ -156,22 +128,3 @@ jwt token鉴权机制是指若需要请求服务器接口，必须通过AuthCont
 
 ## 签名机制
 签名机制是指客户端向服务端传输数据中，对传输数据进行md5加密，并且加密过程中利用Auth接口返回的随机字符串进行混淆加密，并把md5值同时附带给服务端，服务端通获取数据之后对数据再进行一次md5加密，若加密结果和客户端传来的数据一致，则认定客户端请求的数据是没有被篡改的，若不一致，则认为被加密的数据是被篡改的
-
-## 效果图
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0604/194616_36ed7fd6_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0604/194623_a0761bc3_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0604/194630_640dfd35_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/104015_bdb14c74_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0516/000735_b83c5c46_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103734_bd3e8f6b_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0604/194539_f9bb482a_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103746_6b4129ed_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103755_7729b916_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103801_b8216865_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103807_20bfb868_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103814_67e078bb_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103822_58fd5d91_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103827_d6218c74_551203.png "在这里输入图片标题")
-
-## 曾获荣誉
-![输入图片说明](https://gitee.com/uploads/images/2017/1015/151932_f1593f87_551203.jpeg "initpintu_副本_副本.jpg")

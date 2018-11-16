@@ -16,7 +16,7 @@
 package cn.stylefeng.guns.modular.system.controller;
 
 import cn.stylefeng.guns.config.properties.GunsProperties;
-import cn.stylefeng.guns.core.common.annotion.BussinessLog;
+import cn.stylefeng.guns.core.common.annotion.FlowLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.dictmap.UserDict;
@@ -188,7 +188,7 @@ public class UserMgrController extends BaseController {
      * 添加管理员
      */
     @RequestMapping("/add")
-    @BussinessLog(value = "添加管理员", key = "account", dict = UserDict.class)
+    @FlowLog(value = "添加管理员", key = "account", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public ResponseData add(@Valid UserDto user, BindingResult result) {
@@ -218,7 +218,7 @@ public class UserMgrController extends BaseController {
      * @throws NoPermissionException
      */
     @RequestMapping("/edit")
-    @BussinessLog(value = "修改管理员", key = "account", dict = UserDict.class)
+    @FlowLog(value = "修改管理员", key = "account", dict = UserDict.class)
     @ResponseBody
     public ResponseData edit(@Valid UserDto user, BindingResult result) throws NoPermissionException {
         if (result.hasErrors()) {
@@ -246,7 +246,7 @@ public class UserMgrController extends BaseController {
      * 删除管理员（逻辑删除）
      */
     @RequestMapping("/delete")
-    @BussinessLog(value = "删除管理员", key = "userId", dict = UserDict.class)
+    @FlowLog(value = "删除管理员", key = "userId", dict = UserDict.class)
     @Permission
     @ResponseBody
     public ResponseData delete(@RequestParam Integer userId) {
@@ -279,7 +279,7 @@ public class UserMgrController extends BaseController {
      * 重置管理员的密码
      */
     @RequestMapping("/reset")
-    @BussinessLog(value = "重置管理员密码", key = "userId", dict = UserDict.class)
+    @FlowLog(value = "重置管理员密码", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public ResponseData reset(@RequestParam Integer userId) {
@@ -298,7 +298,7 @@ public class UserMgrController extends BaseController {
      * 冻结用户
      */
     @RequestMapping("/freeze")
-    @BussinessLog(value = "冻结用户", key = "userId", dict = UserDict.class)
+    @FlowLog(value = "冻结用户", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public ResponseData freeze(@RequestParam Integer userId) {
@@ -318,7 +318,7 @@ public class UserMgrController extends BaseController {
      * 解除冻结用户
      */
     @RequestMapping("/unfreeze")
-    @BussinessLog(value = "解除冻结用户", key = "userId", dict = UserDict.class)
+    @FlowLog(value = "解除冻结用户", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public ResponseData unfreeze(@RequestParam Integer userId) {
@@ -334,7 +334,7 @@ public class UserMgrController extends BaseController {
      * 分配角色
      */
     @RequestMapping("/setRole")
-    @BussinessLog(value = "分配角色", key = "userId,roleIds", dict = UserDict.class)
+    @FlowLog(value = "分配角色", key = "userId,roleIds", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public ResponseData setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {

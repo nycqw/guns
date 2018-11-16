@@ -1,12 +1,12 @@
 /**
  * Copyright 2018-2020 stylefeng & fengshuonan (https://gitee.com/stylefeng)
- * <p>
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ * <p/>
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,12 +28,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 2017/5/21 12:06
  */
 @SpringBootApplication(exclude = WebAutoConfiguration.class)
-public class GunsApplication {
+public class EdenAdminApplication {
 
-    private final static Logger logger = LoggerFactory.getLogger(GunsApplication.class);
+    private final static Logger logger = LoggerFactory.getLogger(EdenAdminApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(GunsApplication.class, args);
-        logger.info("GunsApplication is success!");
+        SpringApplication.run(EdenAdminApplication.class, args);
     }
 }

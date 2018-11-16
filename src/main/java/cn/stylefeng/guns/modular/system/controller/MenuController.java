@@ -16,7 +16,7 @@
 package cn.stylefeng.guns.modular.system.controller;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.stylefeng.guns.core.common.annotion.BussinessLog;
+import cn.stylefeng.guns.core.common.annotion.FlowLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.dictmap.MenuDict;
@@ -113,7 +113,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/edit")
-    @BussinessLog(value = "修改菜单", key = "name", dict = MenuDict.class)
+    @FlowLog(value = "修改菜单", key = "name", dict = MenuDict.class)
     @ResponseBody
     public ResponseData edit(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
@@ -142,7 +142,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/add")
-    @BussinessLog(value = "菜单新增", key = "name", dict = MenuDict.class)
+    @FlowLog(value = "菜单新增", key = "name", dict = MenuDict.class)
     @ResponseBody
     public ResponseData add(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
@@ -168,7 +168,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/remove")
-    @BussinessLog(value = "删除菜单", key = "menuId", dict = MenuDict.class)
+    @FlowLog(value = "删除菜单", key = "menuId", dict = MenuDict.class)
     @ResponseBody
     public ResponseData remove(@RequestParam Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {

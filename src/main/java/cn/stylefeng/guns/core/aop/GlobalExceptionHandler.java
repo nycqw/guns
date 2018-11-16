@@ -22,6 +22,7 @@ import cn.stylefeng.guns.core.log.factory.LogTaskFactory;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.DisabledAccountException;
@@ -48,9 +49,8 @@ import static cn.stylefeng.roses.core.util.HttpContext.getRequest;
  */
 @ControllerAdvice
 @Order(-1)
+@Slf4j
 public class GlobalExceptionHandler {
-
-    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 拦截业务异常
@@ -58,7 +58,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorResponseData bussiness(ServiceException e) {
+    public ErrorResponseData business(ServiceException e) {
         LogManager.me().executeLog(LogTaskFactory.exceptionLog(ShiroKit.getUser().getId(), e));
         getRequest().setAttribute("tip", e.getMessage());
         log.error("业务异常:", e);

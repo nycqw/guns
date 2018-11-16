@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
-import cn.stylefeng.guns.core.common.annotion.BussinessLog;
+import cn.stylefeng.guns.core.common.annotion.FlowLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.factory.PageFactory;
@@ -74,7 +74,7 @@ public class LoginLogController extends BaseController {
     /**
      * 清空日志
      */
-    @BussinessLog("清空登录日志")
+    @FlowLog("清空登录日志")
     @RequestMapping("/delLoginLog")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
