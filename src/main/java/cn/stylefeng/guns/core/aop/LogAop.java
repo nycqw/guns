@@ -78,11 +78,6 @@ public class LogAop {
             return;
         }
 
-
-        String className = point.getTarget().getClass().getName();
-        // 获取拦截方法的参数
-        String params = AopUtil.getParams(point);
-
         //获取操作名称
         FlowLog annotation = targetMethod.getAnnotation(FlowLog.class);
         String flowName = annotation.value();
@@ -105,7 +100,7 @@ public class LogAop {
                 (LogTaskFactory.bussinessLog(
                         user.getId(),
                         flowName,
-                        className,
+                        AopUtil.getClassName(point),
                         targetMethod.getName(),
                         msg));
     }
