@@ -22,6 +22,7 @@ import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.core.log.factory.LogTaskFactory;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.core.util.AopUtil;
 import cn.stylefeng.guns.core.util.Contrast;
 import cn.stylefeng.roses.core.util.HttpContext;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -69,8 +70,7 @@ public class LogAop {
     }
 
     private void handle(ProceedingJoinPoint point) throws Exception {
-        Method currentMethod = getMethod(point);
-        String methodName = currentMethod.getName();
+        Method targetMethod = AopUtil.getTargetMethod(point);
 
         //如果当前用户未登录，不做日志
         ShiroUser user = ShiroKit.getUser();
@@ -81,10 +81,10 @@ public class LogAop {
 
         String className = point.getTarget().getClass().getName();
         // 获取拦截方法的参数
-        String params = getParams(point);
+        String params = AopUtil.getParams(point);
 
         //获取操作名称
-        FlowLog annotation = currentMethod.getAnnotation(FlowLog.class);
+        FlowLog annotation = targetMethod.getAnnotation(FlowLog.class);
         String flowName = annotation.value();
         String key = annotation.key();
         Class dictClass = annotation.dict();
@@ -101,30 +101,13 @@ public class LogAop {
             msg = Contrast.parseMutiKey(dictMap, key, parameters);
         }
 
-        LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(), flowName, className, methodName, msg));
+        LogManager.me().executeLog
+                (LogTaskFactory.bussinessLog(
+                        user.getId(),
+                        flowName,
+                        className,
+                        targetMethod.getName(),
+                        msg));
     }
 
-    private String getParams(ProceedingJoinPoint point) {
-        Object[] params = point.getArgs();
-        StringBuilder sb = new StringBuilder();
-        for (Object param : params) {
-            sb.append(param);
-            sb.append(" & ");
-        }
-        return params.toString();
-    }
-
-    /**
-     * 获取拦截的方法
-     */
-    private Method getMethod(ProceedingJoinPoint point) throws NoSuchMethodException {
-        Signature signature = point.getSignature();
-        if (!(signature instanceof MethodSignature)) {
-            throw new IllegalArgumentException("该注解只能用于方法");
-        }
-        MethodSignature methodSignature = (MethodSignature) signature;
-        // 目标类对象
-        Object target = point.getTarget();
-        return target.getClass().getMethod(methodSignature.getName(), methodSignature.getParameterTypes());
-    }
 }
